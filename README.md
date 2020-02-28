@@ -19,14 +19,6 @@ This project was bootstrapped with [Create React Native App](https://reactnative
 
 Run an Android emulator or iPhone simulator by following the instructions in the terminal or on your device by scanning the QR code in Expo app.
 
-
-Allow users to create a deck which can hold an unlimited number of cards.
-Allow users to add a card to a specific deck.
-The front of the card should display the question.
-The back of the card should display the answer.
-Users should be able to quiz themselves on a specific deck and receive a score once they're done.
-Users should receive a notification to remind themselves to study if they haven't already for that day.
-
 ## Functionalities
 ##### A. Deck List
 On the landing view, a list of decks are displayed (or a helper text if empty) with the number of cards in each deck.
