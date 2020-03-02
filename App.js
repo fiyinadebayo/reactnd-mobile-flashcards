@@ -7,6 +7,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import DeckList from './views/DeckList';
 import NewDeck from './views/NewDeck';
 import Deck from './views/Deck';
+import Quiz from './views/Quiz';
+import NewCard from './views/NewCard';
 
 const Tab = createBottomTabNavigator();
 const DeckStack = createStackNavigator();
@@ -16,6 +18,8 @@ const DeckStackScreens = () => {
     <DeckStack.Navigator>
       <DeckStack.Screen name="Decks" component={DeckList} />
       <DeckStack.Screen name="Deck" component={Deck} />
+      <DeckStack.Screen name="Quiz" component={Quiz} />
+      <DeckStack.Screen name="New Card" component={NewCard} />
     </DeckStack.Navigator>
   )
 }
