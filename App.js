@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -9,8 +10,9 @@ import NewDeck from './views/NewDeck';
 import Deck from './views/Deck';
 import Quiz from './views/Quiz';
 import NewCard from './views/NewCard';
+import { Platform } from 'react-native';
 
-const Tab = createBottomTabNavigator();
+const Tab = Platform.OS === 'ios' ? createBottomTabNavigator() : createMaterialBottomTabNavigator();
 const DeckStack = createStackNavigator();
 
 const DeckStackScreens = () => {
@@ -27,6 +29,7 @@ const DeckStackScreens = () => {
 const BottomTabs = () => {
   return (
     <Tab.Navigator
+      barStyle={{ backgroundColor: 'orangered' }}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
@@ -37,7 +40,7 @@ const BottomTabs = () => {
             iconName = 'credit-card-plus';
           }
 
-          return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
+          return <MaterialCommunityIcons name={iconName} size={24} color={color} />;
         },
       })}
       tabBarOptions={{
