@@ -2,17 +2,22 @@ import React from 'react';
 import {
   View,
   Text,
+  Button,
   StyleSheet,
-  SafeAreaView
 } from 'react-native';
 
-const DeckList = () => {
+const DeckList = ({ navigation }) => {
   return (
-    <SafeAreaView>
+    <View>
       <Text>
         Deck List
       </Text>
-    </SafeAreaView>
+
+      <Button
+        title="Go to Deck"
+        onPress={() => navigation.navigate('Deck')}
+      />
+    </View>
   )
 }
 

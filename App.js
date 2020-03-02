@@ -1,11 +1,24 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import DeckList from './views/DeckList';
 import NewDeck from './views/NewDeck';
+import Deck from './views/Deck';
 
 const Tab = createBottomTabNavigator();
+const DeckStack = createStackNavigator();
+
+const DeckStackScreens = () => {
+  return (
+    <DeckStack.Navigator>
+      <DeckStack.Screen name="Decks" component={DeckList} />
+      <DeckStack.Screen name="Deck" component={Deck} />
+    </DeckStack.Navigator>
+  )
+}
 
 const BottomTabs = () => {
   return (
@@ -27,16 +40,18 @@ const BottomTabs = () => {
         activeTintColor: 'orangered',
         inactiveTintColor: 'gray',
       }}>
-      <Tab.Screen name="Decks" component={DeckList} />
+      <Tab.Screen name="Decks" component={DeckStackScreens} />
       <Tab.Screen name="New Deck" component={NewDeck} />
     </Tab.Navigator>
   );
-}
+};
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <BottomTabs />
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <BottomTabs />
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
