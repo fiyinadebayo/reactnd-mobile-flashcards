@@ -2,16 +2,17 @@ import React from 'react';
 import {
   View,
   Text,
-  StyleSheet
+  StyleSheet,
+  SafeAreaView
 } from 'react-native';
 
 const DeckList = () => {
   return (
-    <View>
+    <SafeAreaView>
       <Text>
         Deck List
       </Text>
-    </View>
+    </SafeAreaView>
   )
 }
 
