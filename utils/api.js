@@ -9,6 +9,14 @@ export function getDecks () {
     })
 }
 
+export function getDeck (id) {
+  return AsyncStorage.getItem(MF_DECK_KEY)
+    .then(results => {
+      const data = JSON.parse(results);
+      return data[id]
+    })
+}
+
 export function saveDeckTitle (title) {
   return AsyncStorage.mergeItem(MF_DECK_KEY, JSON.stringify({
     [title]: {
