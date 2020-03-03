@@ -6,11 +6,13 @@ import {
   Button,
 } from 'react-native';
 
-const Deck = ({ navigation }) => {
+const Deck = ({ navigation, route }) => {
+  const { key } = route.params;
+
   return (
     <View>
       <Text>
-        Deck View
+        Deck View - {key}
       </Text>
 
       <Button
