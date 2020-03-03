@@ -11,9 +11,8 @@ import { receiveDecks } from '../actions';
 
 const DeckList = ({ navigation, dispatch, decks }) => {
   useEffect(() => {
-    getDecks()
-      .then(decks => dispatch(receiveDecks(decks)))
-  })
+    getDecks().then(d => dispatch(receiveDecks(d)))
+  }, [])
 
   if (!Object.keys(decks).length) {
     return (

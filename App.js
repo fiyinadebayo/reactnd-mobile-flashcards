@@ -19,6 +19,7 @@ const store = createStore(reducers);
 
 const Tab = Platform.OS === 'ios' ? createBottomTabNavigator() : createMaterialBottomTabNavigator();
 const DeckStack = createStackNavigator();
+const NewDeckStack = createStackNavigator();
 
 const DeckStackScreens = () => {
   return (
@@ -28,6 +29,14 @@ const DeckStackScreens = () => {
       <DeckStack.Screen name="Quiz" component={Quiz} />
       <DeckStack.Screen name="New Card" component={NewCard} />
     </DeckStack.Navigator>
+  )
+};
+
+const NewDeckStackScreens = () => {
+  return (
+    <NewDeckStack.Navigator>
+      <NewDeckStack.Screen name="New Deck" component={NewDeck} />
+    </NewDeckStack.Navigator>
   )
 }
 
@@ -53,7 +62,7 @@ const BottomTabs = () => {
         inactiveTintColor: 'gray',
       }}>
       <Tab.Screen name="Decks" component={DeckStackScreens} />
-      <Tab.Screen name="New Deck" component={NewDeck} />
+      <Tab.Screen name="New Deck" component={NewDeckStackScreens} />
     </Tab.Navigator>
   );
 };
