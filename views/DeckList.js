@@ -5,17 +5,28 @@ import {
   Button,
   StyleSheet,
 } from 'react-native';
+import { connect } from 'react-redux';
 import { getDecks } from '../utils/api';
+import { receiveDecks } from '../actions';
 
-const DeckList = ({ navigation }) => {
+const DeckList = ({ navigation, dispatch, decks }) => {
   useEffect(() => {
-    getDecks().then(decks => console.log('Decks: ', decks))
+    getDecks()
+      .then(decks => dispatch(receiveDecks(decks)))
   })
+
+  if (!Object.keys(decks).length) {
+    return (
+      <View>
+        <Text>There are no card decks. Tap "New Deck" to get started.</Text>
+      </View>
+    )
+  }
 
   return (
     <View>
       <Text>
-        Deck List
+        Deck {JSON.stringify(decks)} List
       </Text>
 
       <Button
@@ -26,6 +37,12 @@ const DeckList = ({ navigation }) => {
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
 
-export default DeckList;
+const mapStateToProps = (decks) => {
+  return {
+    decks
+  }
+}
+
+export default connect(mapStateToProps)(DeckList);

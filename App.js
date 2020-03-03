@@ -11,6 +11,11 @@ import Deck from './views/Deck';
 import Quiz from './views/Quiz';
 import NewCard from './views/NewCard';
 import { Platform } from 'react-native';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducers from './reducers';
+
+const store = createStore(reducers);
 
 const Tab = Platform.OS === 'ios' ? createBottomTabNavigator() : createMaterialBottomTabNavigator();
 const DeckStack = createStackNavigator();
@@ -55,10 +60,12 @@ const BottomTabs = () => {
 
 export default function App() {
   return (
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <BottomTabs />
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <Provider store={store}>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <BottomTabs />
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </Provider>
   );
 }
