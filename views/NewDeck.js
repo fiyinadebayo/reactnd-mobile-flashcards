@@ -24,7 +24,7 @@ const NewDeck = ({ dispatch, navigation }) => {
     dispatch(addNewDeck(newDeck))
     saveDeckTitle(title)
     setTitle('')
-    navigation.navigate('Decks')
+    navigation.navigate('Deck', {id: title})
   }
 
   return (
