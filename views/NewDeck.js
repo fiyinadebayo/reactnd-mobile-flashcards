@@ -4,12 +4,12 @@ import {
   Text,
   StyleSheet,
   SafeAreaView,
-  TextInput,
-  TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
 import { addNewDeck } from '../actions';
 import { saveDeckTitle } from '../utils/api';
+import StyledTextInput from '../components/StyledTextInput';
+import Button from '../components/Button';
 
 const NewDeck = ({ dispatch, navigation }) => {
   const [title, setTitle] = useState('');
@@ -31,16 +31,18 @@ const NewDeck = ({ dispatch, navigation }) => {
     <SafeAreaView>
       <View>
         <Text>What is the title of your new deck?</Text>
-        <TextInput
-          style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-          onChangeText={text => setTitle(text)}
+        <StyledTextInput
+          label="Title"
           value={title}
           placeholder="e.g. React Native"
+          onChange={setTitle}
+          autoCapitalize="words"
         />
 
-        <TouchableOpacity onPress={createDeck}>
-          <Text>Create Deck</Text>
-        </TouchableOpacity>
+        <Button
+          text="Create Deck"
+          onPress={createDeck}
+        />
       </View>
     </SafeAreaView>
   )

@@ -25,3 +25,12 @@ export function saveDeckTitle (title) {
     }
   }))
 }
+
+export function addCardToDeck (title, card) {
+  return AsyncStorage.getItem(MF_DECK_KEY)
+    .then(results => {
+      const data = JSON.parse(results);
+      data[title].questions = data[title].questions.concat([card])
+      AsyncStorage.setItem(MF_DECK_KEY, JSON.stringify(data))
+    })
+}
