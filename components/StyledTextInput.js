@@ -5,11 +5,12 @@ import {
   TextInput,
   StyleSheet
 } from 'react-native';
+import StyledText from './StyledText';
 
 const StyledTextInput = ({ label, value, placeholder, onChange, autoCapitalize }) => {
   return (
     <View>
-      {label && <Text>{label}</Text>}
+      {label && <StyledText style={styles.label}>{label}</StyledText>}
 
       <TextInput
         style={styles.input}
@@ -23,10 +24,21 @@ const StyledTextInput = ({ label, value, placeholder, onChange, autoCapitalize }
 }
 
 const styles = StyleSheet.create({
+  label: {
+    color: 'gray',
+    fontSize: 14,
+    letterSpacing: 1,
+    textTransform: 'uppercase',
+    marginBottom: 10,
+  },
   input: {
-    height: 50,
-    borderColor: 'gray',
+    backgroundColor: '#fff',
+    borderColor: '#cecece',
     borderWidth: 1,
+    borderRadius: 5,
+    fontSize: 16,
+    height: 50,
+    padding: 5,
   }
 })
 

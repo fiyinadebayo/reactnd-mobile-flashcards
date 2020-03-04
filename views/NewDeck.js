@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   View,
-  Text,
   StyleSheet,
   SafeAreaView,
 } from 'react-native';
@@ -10,6 +9,7 @@ import { addNewDeck } from '../actions';
 import { saveDeckTitle } from '../utils/api';
 import StyledTextInput from '../components/StyledTextInput';
 import Button from '../components/Button';
+import StyledText from '../components/StyledText';
 
 const NewDeck = ({ dispatch, navigation }) => {
   const [title, setTitle] = useState('');
@@ -28,26 +28,36 @@ const NewDeck = ({ dispatch, navigation }) => {
   }
 
   return (
-    <SafeAreaView>
-      <View>
-        <Text>What is the title of your new deck?</Text>
-        <StyledTextInput
-          label="Title"
-          value={title}
-          placeholder="e.g. React Native"
-          onChange={setTitle}
-          autoCapitalize="words"
-        />
+    <View style={styles.container}>
+      <StyledText style={styles.header}>
+        What is the title of your new deck?
+      </StyledText>
 
-        <Button
-          text="Create Deck"
-          onPress={createDeck}
-        />
-      </View>
-    </SafeAreaView>
+      <StyledTextInput
+        label="Title"
+        value={title}
+        placeholder="e.g. React Native"
+        onChange={setTitle}
+        autoCapitalize="words"
+      />
+
+      <Button
+        text="Create Deck"
+        onPress={createDeck}
+      />
+    </View>
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 16
+  },
+  header: {
+    fontSize: 24,
+    marginVertical: 20,
+  },
+})
 
 export default connect()(NewDeck);

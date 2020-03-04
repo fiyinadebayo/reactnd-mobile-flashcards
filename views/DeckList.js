@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import {
   View,
-  Text,
-  Button,
   StyleSheet,
   FlatList,
   TouchableOpacity,
@@ -80,7 +78,7 @@ const styles = StyleSheet.create({
   },
   itemSubtitle: {
     color: 'gray',
-  }
+  },
 });
 
 const mapStateToProps = (decks) => {
