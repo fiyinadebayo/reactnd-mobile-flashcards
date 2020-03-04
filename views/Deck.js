@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   },
   quizBtnText: {
     color: 'orangered',
-  }
+  },
 });
 
 const mapStateToProps = (state, {route}) => {

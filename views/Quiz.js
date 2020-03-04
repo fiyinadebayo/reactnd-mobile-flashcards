@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import {
   View,
-  Text,
   StyleSheet,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import { connect } from 'react-redux';
 import Button from '../components/Button';
+import StyledText from '../components/StyledText';
 
 const Quiz = ({ id, deck, navigation }) => {
   const total = deck.questions.length
@@ -46,42 +47,48 @@ const Quiz = ({ id, deck, navigation }) => {
 
   if (position <= total-1) {
     return (
-      <View>
-        <Text>
+      <ScrollView
+        contentContainerStyle={styles.containerProps}
+        style={styles.container}>
+        <StyledText style={styles.progress}>
           {position + 1} of {total}
-        </Text>
+        </StyledText>
 
         { !showAnswer ? (
-          <Text>
+          <StyledText style={styles.cardText}>
             {questions[position].question}
-          </Text>
+          </StyledText>
         ) : (
-          <Text>
+          <StyledText style={styles.cardText}>
             {questions[position].answer}
-          </Text>
+          </StyledText>
         )}
 
         <TouchableOpacity onPress={() => setShowAnswer(!showAnswer)}>
-          <Text>Show Answer</Text>
+          <StyledText style={styles.showAnswer}>
+            Show Answer
+          </StyledText>
         </TouchableOpacity>
 
         <Button
           text="Correct"
           onPress={markCorrect}
+          style={styles.correctBtn}
         />
 
         <Button
           text="Incorrect"
           onPress={markIncorrect}
+          style={styles.incorrectBtn}
         />
-      </View>
+      </ScrollView>
     )
   } else {
     return (
-      <View>
-        <Text>Result</Text>
-        <Text>correct: {score.correct} {Math.round(score.correct/total*100)}%</Text>
-        <Text>incorrect: {score.incorrect}</Text>
+      <View style={styles.container}>
+        <StyledText>Result</StyledText>
+        <StyledText>correct: {score.correct} {Math.round(score.correct/total*100)}%</StyledText>
+        <StyledText>incorrect: {score.incorrect}</StyledText>
 
         <View>
           <Button
@@ -99,7 +106,35 @@ const Quiz = ({ id, deck, navigation }) => {
   }
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#f7f7f7',
+    flex: 1,
+    padding: 16,
+  },
+  containerProps: {
+    alignItems: 'center',
+  },
+  progress: {
+    color: 'gray',
+  },
+  cardText: {
+    fontSize: 32,
+    marginVertical: 16,
+    textAlign: 'center',
+  },
+  showAnswer: {
+    color: 'orangered',
+    paddingVertical: 8,
+    textDecorationLine: 'underline',
+  },
+  correctBtn: {
+    backgroundColor: '#008000'
+  },
+  incorrectBtn: {
+    backgroundColor: '#d12528'
+  },
+})
 
 const mapStateToProps = (state, {route}) => {
   const { id } = route.params;
