@@ -12,34 +12,41 @@ import { getDecks } from '../utils/api';
 import { receiveDecks } from '../actions';
 import StyledText from '../components/StyledText';
 
+const DeckItem = ({ id, title, cards, navigation }) => {
+  return (
+    <TouchableOpacity
+      style={styles.item}
+      onPress={() => navigation.navigate('Deck', {id})}>
+      <StyledText style={styles.itemTitle}>
+        { title }
+      </StyledText>
+
+      <StyledText style={styles.itemSubtitle}>
+        { cards } {cards === 1 ? 'Card' : 'Cards'}
+      </StyledText>
+    </TouchableOpacity>
+  )
+}
+
 const DeckList = ({ navigation, dispatch, decks }) => {
   useEffect(() => {
     getDecks().then(d => dispatch(receiveDecks(d)))
   }, [])
 
-  const renderDecks = ({item}) => (
-    <TouchableOpacity onPress={() => navigation.navigate('Deck', {id: item.key})}>
-      <View>
-        <Text>
-          { item.title }
-        </Text>
-
-        <Text>
-          { item.cards } {item.cards === 1 ? 'Card' : 'Cards'}
-        </Text>
-      </View>
-    </TouchableOpacity>
-  )
-
   return (
     <View style={styles.container}>
       { Object.keys(decks).length ? (
-        <View>
-          <FlatList
-            data={decks}
-            renderItem={renderDecks}
-          />
-        </View>
+        <FlatList
+          data={decks}
+          renderItem={({item}) => (
+            <DeckItem
+              id={item.key}
+              title={item.title}
+              cards={item.cards}
+              navigation={navigation}
+            />
+          )}
+        />
       ) : (
         <View>
           <StyledText style={styles.noDecksText}>
@@ -54,12 +61,26 @@ const DeckList = ({ navigation, dispatch, decks }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16
+    paddingHorizontal: 16
   },
   noDecksText: {
     color: 'gray',
     textAlign: 'center',
   },
+  item: {
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    marginVertical: 8,
+    padding: 20,
+  },
+  itemTitle: {
+    fontSize: 24,
+    marginBottom: 10,
+  },
+  itemSubtitle: {
+    color: 'gray',
+  }
 });
 
 const mapStateToProps = (decks) => {

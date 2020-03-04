@@ -11,6 +11,7 @@ const StyledText = ({ children, style }) => {
 
 const styles = StyleSheet.create({
   text: {
+    color: '#333',
     fontSize: 16
   }
 })
