@@ -4,8 +4,8 @@ import StyledText from './StyledText';
 
 const { width } = Dimensions.get('screen');
 
-const Button = ({ text, onPress, style, disabled }) => {
-  const disabledStyle = disabled ? {backgroundColor: '#ddd'} : {};
+const Button = ({ text, onPress, style, textStyle, disabled }) => {
+  const disabledStyle = disabled ? {backgroundColor: '#ddd', borderColor: 'transparent'} : {};
   const disabledText = disabled ? {color: 'gray'} : {};
 
   return (
@@ -14,7 +14,7 @@ const Button = ({ text, onPress, style, disabled }) => {
       onPress={onPress}
       style={[styles.button, style, disabledStyle]}>
 
-      <StyledText style={[styles.text, disabledText]}>
+      <StyledText style={[styles.text, textStyle, disabledText]}>
         { text }
       </StyledText>
     </TouchableOpacity>
