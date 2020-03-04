@@ -19,6 +19,10 @@ This project was bootstrapped with [Create React Native App](https://reactnative
 
 Run an Android emulator or iPhone simulator by following the instructions in the terminal or on your device by scanning the QR code in Expo app.
 
+### Platforms tested
+* iOS
+* Android
+
 ## Functionalities
 ##### A. Deck List
 On the landing view, a list of decks are displayed (or a helper text if empty) with the number of cards in each deck.
