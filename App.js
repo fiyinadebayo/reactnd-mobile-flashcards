@@ -5,15 +5,17 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { createStackNavigator } from '@react-navigation/stack';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Platform } from 'react-native';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducers from './reducers';
+
+// Views
 import DeckList from './views/DeckList';
 import NewDeck from './views/NewDeck';
 import Deck from './views/Deck';
 import Quiz from './views/Quiz';
 import NewCard from './views/NewCard';
-import { Platform } from 'react-native';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-import reducers from './reducers';
 
 const store = createStore(reducers);
 

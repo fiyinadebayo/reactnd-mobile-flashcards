@@ -10,6 +10,7 @@ import {
 import { connect } from 'react-redux';
 import { getDecks } from '../utils/api';
 import { receiveDecks } from '../actions';
+import StyledText from '../components/StyledText';
 
 const DeckList = ({ navigation, dispatch, decks }) => {
   useEffect(() => {
@@ -30,25 +31,36 @@ const DeckList = ({ navigation, dispatch, decks }) => {
     </TouchableOpacity>
   )
 
-  if (!Object.keys(decks).length) {
-    return (
-      <View>
-        <Text>There are no card decks. Tap "New Deck" to get started.</Text>
-      </View>
-    )
-  }
-
   return (
-    <View>
-      <FlatList
-        data={decks}
-        renderItem={renderDecks}
-      />
+    <View style={styles.container}>
+      { Object.keys(decks).length ? (
+        <View>
+          <FlatList
+            data={decks}
+            renderItem={renderDecks}
+          />
+        </View>
+      ) : (
+        <View>
+          <StyledText style={styles.noDecksText}>
+            There are no card decks. Tap "New Deck" to get started.
+          </StyledText>
+        </View>
+      ) }
     </View>
   )
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16
+  },
+  noDecksText: {
+    color: 'gray',
+    textAlign: 'center',
+  },
+});
 
 const mapStateToProps = (decks) => {
   const formatDecks = Object.keys(decks).map(key => {
