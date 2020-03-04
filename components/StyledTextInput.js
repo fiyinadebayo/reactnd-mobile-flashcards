@@ -7,9 +7,9 @@ import {
 } from 'react-native';
 import StyledText from './StyledText';
 
-const StyledTextInput = ({ label, value, placeholder, onChange, autoCapitalize }) => {
+const StyledTextInput = ({ label, value, placeholder, onChange, autoCapitalize, style }) => {
   return (
-    <View>
+    <View style={style}>
       {label && <StyledText style={styles.label}>{label}</StyledText>}
 
       <TextInput

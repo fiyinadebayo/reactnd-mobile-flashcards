@@ -16,6 +16,10 @@ const NewCard = ({ route, navigation, dispatch }) => {
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
 
+  const isBtnDisabled = () => {
+    return !question.length || !answer.length
+  }
+
   const addCard = () => {
     const card = {question, answer};
     dispatch(addNewCard(id, card));
@@ -24,12 +28,13 @@ const NewCard = ({ route, navigation, dispatch }) => {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       <StyledTextInput
         label="Question"
         value={question}
         placeholder="e.g. What is a component?"
         onChange={setQuestion}
+        style={styles.inputBox}
       />
 
       <StyledTextInput
@@ -42,11 +47,21 @@ const NewCard = ({ route, navigation, dispatch }) => {
       <Button
         text="Add"
         onPress={addCard}
+        disabled={isBtnDisabled()}
       />
     </View>
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#f7f7f7',
+    flex: 1,
+    padding: 16,
+  },
+  inputBox: {
+    marginBottom: 20,
+  },
+})
 
 export default connect()(NewCard);
