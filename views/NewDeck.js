@@ -44,6 +44,7 @@ const NewDeck = ({ dispatch, navigation }) => {
       <Button
         text="Create Deck"
         onPress={createDeck}
+        disabled={!title.length}
       />
     </View>
   )
@@ -51,6 +52,7 @@ const NewDeck = ({ dispatch, navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#f7f7f7',
     flex: 1,
     paddingHorizontal: 16
   },

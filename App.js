@@ -5,7 +5,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { createStackNavigator } from '@react-navigation/stack';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Platform } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './reducers';
@@ -45,7 +45,7 @@ const NewDeckStackScreens = () => {
 const BottomTabs = () => {
   return (
     <Tab.Navigator
-      barStyle={{ backgroundColor: 'orangered' }}
+      barStyle={styles.barStyle}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
@@ -80,3 +80,9 @@ export default function App() {
     </Provider>
   );
 }
+
+const styles = StyleSheet.create({
+  barStyle: {
+    backgroundColor: 'orangered'
+  },
+})

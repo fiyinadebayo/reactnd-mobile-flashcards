@@ -33,13 +33,13 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: '#fff',
-    borderColor: '#cecece',
+    borderColor: '#ddd',
     borderWidth: 1,
     borderRadius: 5,
     fontSize: 16,
     height: 50,
     padding: 5,
-  }
+  },
 })
 
 export default StyledTextInput;

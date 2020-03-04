@@ -58,23 +58,27 @@ const DeckList = ({ navigation, dispatch, decks }) => {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#f7f7f7',
     flex: 1,
-    paddingHorizontal: 16
   },
   noDecksText: {
     color: 'gray',
+    marginVertical: 16,
     textAlign: 'center',
   },
   item: {
     alignItems: 'center',
     backgroundColor: '#fff',
+    borderColor: '#efefef',
     borderRadius: 10,
+    borderWidth: 1,
+    marginHorizontal: 16,
     marginVertical: 8,
     padding: 20,
   },
   itemTitle: {
     fontSize: 24,
-    marginBottom: 10,
+    margin: 16,
   },
   itemSubtitle: {
     color: 'gray',
