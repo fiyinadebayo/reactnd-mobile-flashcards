@@ -85,15 +85,28 @@ const Quiz = ({ id, deck, navigation }) => {
     )
   } else {
     return (
-      <View style={styles.container}>
-        <StyledText>Result</StyledText>
-        <StyledText>correct: {score.correct} {Math.round(score.correct/total*100)}%</StyledText>
-        <StyledText>incorrect: {score.incorrect}</StyledText>
+      <ScrollView
+        contentContainerStyle={styles.containerProps}
+        style={styles.container}>
+        <StyledText style={styles.answerTitle}>Your Score</StyledText>
+
+        <StyledText style={styles.percentage}>
+          {Math.round(score.correct/total*100)}%
+        </StyledText>
+
+        <StyledText style={[styles.summary, {color: '#008000'}]}>
+          Correct: {score.correct}
+        </StyledText>
+        <StyledText style={[styles.summary, {color: '#d12528'}]}>
+          Incorrect: {score.incorrect}
+        </StyledText>
 
         <View>
           <Button
             text="Restart Quiz"
             onPress={resetQuiz}
+            style={styles.quizBtn}
+            textStyle={styles.quizBtnText}
           />
 
           <Button
@@ -101,7 +114,7 @@ const Quiz = ({ id, deck, navigation }) => {
             onPress={() => navigation.navigate('Deck', {id})}
           />
         </View>
-      </View>
+      </ScrollView>
     )
   }
 }
@@ -133,6 +146,27 @@ const styles = StyleSheet.create({
   },
   incorrectBtn: {
     backgroundColor: '#d12528'
+  },
+  answerTitle: {
+    fontSize: 24,
+  },
+  percentage: {
+    fontSize: 60,
+    marginVertical: 20,
+  },
+  summary: {
+    fontSize: 14,
+    letterSpacing: 1,
+    marginVertical: 4,
+    textTransform: 'uppercase',
+  },
+  quizBtn: {
+    backgroundColor: 'transparent',
+    borderColor: 'orangered',
+    borderWidth: 1,
+  },
+  quizBtnText: {
+    color: 'orangered',
   },
 })
 
