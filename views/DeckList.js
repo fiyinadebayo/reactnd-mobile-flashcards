@@ -24,7 +24,7 @@ const DeckList = ({ navigation, dispatch, decks }) => {
         </Text>
 
         <Text>
-          { item.cards } Cards
+          { item.cards } {item.cards === 1 ? 'Card' : 'Cards'}
         </Text>
       </View>
     </TouchableOpacity>
@@ -43,11 +43,6 @@ const DeckList = ({ navigation, dispatch, decks }) => {
       <FlatList
         data={decks}
         renderItem={renderDecks}
-      />
-
-      <Button
-        title="Go to Deck"
-        onPress={() => navigation.navigate('Deck')}
       />
     </View>
   )

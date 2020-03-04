@@ -15,7 +15,7 @@ const Deck = ({ navigation, deck, id }) => {
       </Text>
 
       <Text>
-        { deck.questions.length } Cards
+        { deck.questions.length } {deck.questions.length === 1 ? 'Card' : 'Cards'}
       </Text>
 
       <Button
