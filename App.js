@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
@@ -9,6 +9,7 @@ import { Platform, StyleSheet } from 'react-native';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './reducers';
+import { setLocalNotification } from './utils/notifications';
 
 // Views
 import DeckList from './views/DeckList';
@@ -70,6 +71,10 @@ const BottomTabs = () => {
 };
 
 export default function App() {
+  useEffect(() => {
+    setLocalNotification()
+  })
+
   return (
     <Provider store={store}>
       <SafeAreaProvider>

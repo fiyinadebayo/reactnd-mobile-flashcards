@@ -6,8 +6,15 @@ import {
 import { connect } from 'react-redux';
 import StyledText from '../components/StyledText';
 import Button from '../components/Button';
+import { clearLocalNotification, setLocalNotification } from '../utils/notifications';
 
 const Deck = ({ navigation, deck, id }) => {
+  const startQuiz = () => {
+    navigation.navigate('Quiz', {id})
+    clearLocalNotification()
+      .then(setLocalNotification)
+  }
+
   return (
     <View style={styles.container}>
       <StyledText style={styles.title}>
@@ -20,7 +27,7 @@ const Deck = ({ navigation, deck, id }) => {
 
       <Button
         text="Start Quiz"
-        onPress={() => navigation.navigate('Quiz', {id})}
+        onPress={startQuiz}
         disabled={!deck.questions.length}
         style={styles.quizBtn}
         textStyle={styles.quizBtnText}
