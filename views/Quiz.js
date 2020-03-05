@@ -20,12 +20,17 @@ const Quiz = ({ id, deck, navigation }) => {
     incorrect: 0
   });
 
+  const goToNext = () => {
+    setPosition(position+1)
+    setShowAnswer(false)
+  }
+
   const markCorrect = () => {
     setScore({
       ...score,
       correct: score.correct+1
     })
-    setPosition(position+1)
+    goToNext()
   }
 
   const markIncorrect = () => {
@@ -33,7 +38,7 @@ const Quiz = ({ id, deck, navigation }) => {
       ...score,
       incorrect: score.incorrect+1
     })
-    setPosition(position+1)
+    goToNext()
   }
 
   const resetQuiz = () => {
